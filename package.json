@@ -1,0 +1,17 @@
+{
+  "name": "pythonfront",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "jsdom": "^25.0.1",
+    "node-gyp": "^11.0.0",
+    "node-pre-gyp": "^0.17.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

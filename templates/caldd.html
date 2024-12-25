@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<header>
+    <script>
+        window.ddjskey = '2211F522B61E269B869FA6EAFFB5E1';
+        window.ddoptions = {
+            ajaxListenerPath: ['hermes.c'],
+            endpoint: 'https://dd.hermes.com/js/'
+        }
+    </script>
+    <script src="{{ url_for('static', filename='datadome.js') }}"></script>
+    <script>
+        window.navigator.geolocation.getCurrentPosition((position)=>{
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+            console.log(`纬度：${lat.toFixed(2)}`);
+            console.log(`经度：${long.toFixed(2)}`);
+        }, (err)=> {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        })
+    </script>
+</header>
+<body>
+    
+</body>
+</html>
