@@ -1,6 +1,7 @@
 from re import finditer, MULTILINE
 from execjs import compile
 import os
+from datetime import datetime
 
 execJs = '''
         function a(e, t) {
@@ -66,11 +67,17 @@ if __name__ == '__main__':
             numberMapper[match.group('number')] = None
 
         findVarEncryptName = compile(execJs)
+        totalSpent = 0
         for key in numberMapper.keys():
+            n = datetime.now()
             numberMapper[key] = findVarEncryptName.call('a', key)
+            spent = int((datetime.now() - n).total_seconds() * 1000)
+            totalSpent += spent
+            print(f'resolve:{key}, result:{numberMapper[key]}, use:({spent}ms)')
+        print(f'Done use {totalSpent}MS')
 
         for k, v in methods.items():
-            methods[k] = f"{k.replace(methods[k], f"'{numberMapper[v]}'")}"
+            methods[k] = f"'{numberMapper[v]}'"
 
         if os.path.exists('method.txt'):
             os.remove('method.txt')
