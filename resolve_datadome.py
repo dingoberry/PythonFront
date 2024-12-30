@@ -43,9 +43,9 @@ execJs = '''
 if __name__ == '__main__':
     with open('tags.js', 'r') as f:
         content = f.read()
-        matchs = finditer(r"'(?P<name>(\\x[0-9A-Fa-f]{2})+)'", content, MULTILINE)
+        matches = finditer(r"'(?P<name>(\\x[0-9A-Fa-f]{2})+)'", content, MULTILINE)
         actualNames = {}
-        for match in matchs:
+        for match in matches:
             actualNames[match.group('name')] = match.group('name').encode().decode('unicode_escape').replace("'", "\\'")
        
         sortNames = sorted(actualNames.keys(), key=len, reverse=True)
@@ -60,9 +60,9 @@ if __name__ == '__main__':
                 w.write(f'{v}={k}\n')
 
         methods = {}
-        matchs = finditer(r"\W(?P<method>\w\((?P<number>\d+)\))", content, MULTILINE)
+        matches = finditer(r"\W(?P<method>\w\((?P<number>\d+)\))", content, MULTILINE)
         numberMapper = {}
-        for match in matchs:
+        for match in matches:
             methods[match.group('method')] = match.group('number')
             numberMapper[match.group('number')] = None
 
